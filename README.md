@@ -1,0 +1,1 @@
+# hw_qa_quru_22_diploma
