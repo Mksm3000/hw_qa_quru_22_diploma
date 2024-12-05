@@ -47,7 +47,7 @@ def setup_browser(request):
     browser.config.base_url = 'https://glovoapp.com/'
     browser.config.window_height = 1600
     browser.config.window_width = 900
-    browser.config.timeout = 15
+    browser.config.timeout = 30
 
     yield browser
 

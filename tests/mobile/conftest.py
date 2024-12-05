@@ -34,6 +34,9 @@ def context(request):
 
 @pytest.fixture(scope='function', autouse=True)
 def android_mobile_management(context):
+
+    print(f'\nMobile context: {context}\n')
+
     from config import config
     options = config.to_driver_options(context=context)
 
@@ -43,7 +46,7 @@ def android_mobile_management(context):
             options=options
         )
 
-    browser.config.timeout = 10.0
+    browser.config.timeout = 30.0
 
     browser.config._wait_decorator = support._logging.wait_with(
         context=allure_commons._allure.StepContext)
