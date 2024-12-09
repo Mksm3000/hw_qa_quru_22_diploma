@@ -8,7 +8,7 @@ class MainPage:
         with allure.step('Открываем главную страницу'):
             browser.open('')
             # закрываем всплывающий баннер
-            browser.element('.banner-close-button').should(be.visible).click()
+            # browser.element('.banner-close-button').should(be.visible).click()
 
     def login_button_click(self):
         with allure.step("Нажимаем кнопку 'Login'"):
