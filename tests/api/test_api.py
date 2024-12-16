@@ -4,7 +4,6 @@ from requests import sessions
 from curlify import to_curl
 import allure
 import json
-import pytest
 
 
 def reqres_api(method, url, **kwargs):
@@ -42,7 +41,6 @@ def get_total_users():
 @allure.epic("Api тесты")
 @allure.feature("Reqres api")
 @allure.story("Проверяем, что приходит 200 код при отправке GET /api/users/2")
-@pytest.mark.api
 def test_ok_status_code():
     response = reqres_api('get', '/api/users/2')
     response_utils.check_status_code(200, response.status_code)
@@ -54,7 +52,6 @@ def test_ok_status_code():
 @allure.epic("Api тесты")
 @allure.feature("Reqres api")
 @allure.story("Проверяем, что приходит список юзеров с пятой страницы")
-@pytest.mark.api
 def test_get_users():
     schema = schema_utils.load_schema('get_users.json')
 
@@ -70,7 +67,6 @@ def test_get_users():
 @allure.epic("Api тесты")
 @allure.feature("Reqres api")
 @allure.story("Проверяем получение информации о юзере №3")
-@pytest.mark.api
 def test_get_user():
     schema = schema_utils.load_schema('get_single_user.json')
 
@@ -86,7 +82,6 @@ def test_get_user():
 @allure.epic("Api тесты")
 @allure.feature("Reqres api")
 @allure.story("Проверяем, что падает ошибка при попытке получить информацию о юзерах на несуществующей странице")
-@pytest.mark.api
 def test_get_user_not_found():
     total_users = int(get_total_users())
     more_than_expected_users_amount = total_users + 100
@@ -102,7 +97,6 @@ def test_get_user_not_found():
 @allure.epic("Api тесты")
 @allure.feature("Reqres api")
 @allure.story("Проверяем возможность создания нового пользователя")
-@pytest.mark.api
 def test_create_user():
     schema = schema_utils.load_schema('create_user.json')
 
@@ -125,7 +119,6 @@ def test_create_user():
 @allure.epic("Api тесты")
 @allure.feature("Reqres api")
 @allure.story("Проверяем возможность изменить информацию о юзере №13")
-@pytest.mark.api
 def test_put_user():
     schema = schema_utils.load_schema('put_user.json')
     name = "Naegleria fowleri"
@@ -150,7 +143,6 @@ def test_put_user():
 @allure.epic("Api тесты")
 @allure.feature("Reqres api")
 @allure.story("Проверяем успешность логина")
-@pytest.mark.api
 def test_post_successful_login():
     email = "eve.holt@reqres.in"
     password = "cityslicka"
@@ -175,7 +167,6 @@ def test_post_successful_login():
 @allure.epic("Api тесты")
 @allure.feature("Reqres api")
 @allure.story("Проверяем, что падает ошибка 'Missing password' при попытке логина без пароля")
-@pytest.mark.api
 def test_post_unsuccessful_login():
     email = "dieter@bohlen.de"
 
@@ -198,7 +189,6 @@ def test_post_unsuccessful_login():
 @allure.epic("Api тесты")
 @allure.feature("Reqres api")
 @allure.story("Проверяем успешную регистрацию")
-@pytest.mark.api
 def test_post_successful_registration():
     email = "eve.holt@reqres.in"
     password = "pistol"
@@ -223,7 +213,6 @@ def test_post_successful_registration():
 @allure.epic("Api тесты")
 @allure.feature("Reqres api")
 @allure.story("Проверяем, что падает ошибка 'Missing password' при попытке регистрации без пароля")
-@pytest.mark.api
 def test_post_unsuccessful_registration():
     email = "sydney@fife"
 
