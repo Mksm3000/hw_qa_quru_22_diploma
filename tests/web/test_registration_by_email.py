@@ -1,8 +1,10 @@
 import allure
+import pytest
 
 from pages.main_page import main_page
-from user.random import random_user
+from tests import conftest
 from user.nonexistent import non_existent_user
+from user.random import random_user
 
 
 @allure.severity('critical')
@@ -11,6 +13,8 @@ from user.nonexistent import non_existent_user
 @allure.feature('Registration')
 @allure.story('Registration new user by email')
 @allure.title('Test registration by email with successful')
+@conftest.web
+@pytest.mark.web
 def test_registration_by_email_with_successful():
     main_page.open()
 
@@ -29,6 +33,8 @@ def test_registration_by_email_with_successful():
 @allure.feature('Registration')
 @allure.story('Registration new user by email')
 @allure.title('Test registration by email with invalid email format')
+@conftest.web
+@pytest.mark.web
 def test_registration_by_email_with_invalid_email():
     main_page.open()
 

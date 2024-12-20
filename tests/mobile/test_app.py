@@ -1,6 +1,8 @@
 import allure
+import pytest
 
 from pages.app_page import app_page
+from tests import conftest
 
 
 @allure.severity('critical')
@@ -9,6 +11,8 @@ from pages.app_page import app_page
 @allure.feature('Mobile registration')
 @allure.story('Mobile registration new user by email')
 @allure.title('Mobile app open and choose registration by email')
+@conftest.android
+@pytest.mark.android
 def test_app_open_and_registration_by_email():
     app_page.open_start_page_and_click_continue()
     try:
