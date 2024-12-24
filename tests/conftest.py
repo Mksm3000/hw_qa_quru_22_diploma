@@ -31,7 +31,6 @@ def project_config(request):
             browser_version=browser_version_value if
             context_value == 'web' else None)
 
-    print(project_config.__dict__)
     return project_config
 
 
