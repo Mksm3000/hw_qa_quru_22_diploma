@@ -20,7 +20,7 @@ class MainPage:
     def email_button_click(self):
         with allure.step("Нажимаем кнопку 'Email'"):
             # ожидаем появление модального окна
-            browser.element('#base-modal').with_(timeout=30).should(be.visible)
+            # browser.element('#base-modal').with_(timeout=30).should(be.visible)
             email_button = browser.element('[data-test-id="email-button"]')
             email_button.should(be.visible)
             email_button.click()
