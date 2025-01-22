@@ -12,6 +12,8 @@ class MainPage:
 
     def login_button_click(self):
         with allure.step("Нажимаем кнопку 'Login'"):
+            # принимаем политику куки, нажимаем "accept all"
+            browser.element('#onetrust-accept-btn-handler').click()
             login_button = browser.element(
                 '[class="unified-header-desktop__right"]>[data-test-id="login-button"]')
             login_button.should(be.visible)
@@ -19,8 +21,6 @@ class MainPage:
 
     def email_button_click(self):
         with allure.step("Нажимаем кнопку 'Email'"):
-            # принимаем политику куки, нажимаем "accept all"
-            browser.element('#onetrust-accept-btn-handler').click()
             # ожидаем появление модального окна
             #browser.element('#base-modal').with_(timeout=30).should(be.visible)
 
