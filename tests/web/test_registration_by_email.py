@@ -5,12 +5,24 @@ from pages.main_page import main_page
 from tests import conftest
 from user.nonexistent import non_existent_user
 from user.random import random_user
+from tests.marks import microservice, layer, owner, tm4j, jira_issues
 
 
+pytestmark = [
+    layer("web"),
+    owner("zosimov"),
+    allure.feature("Registration")
+]
+
+OWNER = "allure-framework"
+REPO = "allure2"
+
+
+@tm4j("ZM-T12")
+@microservice("Billing")
+@jira_issues("ZM-3")
+@microservice("auth-service")
 @allure.severity('critical')
-@allure.label('UI')
-@allure.label("owner", "Zosimov")
-@allure.feature('Registration')
 @allure.story('Registration new user by email')
 @allure.title('Test registration by email with successful')
 @conftest.web
@@ -27,10 +39,11 @@ def test_registration_by_email_with_successful():
     main_page.address_input('Mainski put')
 
 
+@tm4j("ZM-T13")
+@microservice("auth-service")
+@jira_issues("ZM-3")
+@microservice("auth-service")
 @allure.severity('critical')
-@allure.label('UI')
-@allure.label("owner", "Zosimov")
-@allure.feature('Registration')
 @allure.story('Registration new user by email')
 @allure.title('Test registration by email with invalid email format')
 @conftest.web

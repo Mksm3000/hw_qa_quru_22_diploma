@@ -2,6 +2,17 @@ import allure
 
 from pages.product_page import product_page
 from pages.main_page import main_page
+from tests.marks import microservice, layer, owner, tm4j, jira_issues
+
+
+pytestmark = [
+    layer("web"),
+    owner("zosimov"),
+    allure.feature("Registration")
+]
+
+OWNER = "allure-framework"
+REPO = "allure2"
 
 
 class DATA:
@@ -14,9 +25,12 @@ class DATA:
     extra_second = 'Fanta 0.33 l'
 
 
+
+@tm4j("ZM-T14")
+@microservice("Billing")
+@jira_issues("ZM-4")
+@microservice("cart-service")
 @allure.severity('critical')
-@allure.label('UI')
-@allure.label("owner", "Zosimov")
 @allure.feature('Products')
 @allure.story('Add, edit and delete products in cart')
 @allure.title('Test adding, editing and deleting products in cart')

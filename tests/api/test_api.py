@@ -8,6 +8,16 @@ from requests import sessions
 
 from tests import conftest
 from utils import schema_utils, response_utils
+from tests.marks import microservice, layer, owner, tm4j, jira_issues
+
+pytestmark = [
+    layer("rest"),
+    owner("zosimov"),
+    allure.feature("reqres api")
+]
+
+OWNER = "allure-framework"
+REPO = "allure2"
 
 
 def reqres_api(method, url, **kwargs):
@@ -39,12 +49,9 @@ def get_total_users():
     total_users = response.json()['total']
     return total_users
 
-
-@allure.tag("api")
+@tm4j("ZM-T1")
+@jira_issues("ZM-1")
 @allure.severity(Severity.NORMAL)
-@allure.label("owner", "Zosimov")
-@allure.epic("Api тесты")
-@allure.feature("Reqres api")
 @allure.story("Проверяем, что приходит 200 код при отправке GET /api/users/2")
 @conftest.api
 @pytest.mark.api
@@ -53,11 +60,9 @@ def test_ok_status_code():
     response_utils.check_status_code(200, response.status_code)
 
 
-@allure.tag("api")
+@tm4j("ZM-T2")
+@jira_issues("ZM-1")
 @allure.severity(Severity.NORMAL)
-@allure.label("owner", "Zosimov")
-@allure.epic("Api тесты")
-@allure.feature("Reqres api")
 @allure.story("Проверяем, что приходит список юзеров с пятой страницы")
 @conftest.api
 @pytest.mark.api
@@ -70,11 +75,9 @@ def test_get_users():
     response_utils.validate_response_json(schema, response)
 
 
-@allure.tag("api")
+@tm4j("ZM-T3")
+@jira_issues("ZM-1")
 @allure.severity(Severity.NORMAL)
-@allure.label("owner", "Zosimov")
-@allure.epic("Api тесты")
-@allure.feature("Reqres api")
 @allure.story("Проверяем получение информации о юзере №3")
 @conftest.api
 @pytest.mark.api
@@ -87,11 +90,9 @@ def test_get_user():
     response_utils.validate_response_json(schema, response)
 
 
-@allure.tag("api")
+@tm4j("ZM-T4")
+@jira_issues("ZM-1")
 @allure.severity(Severity.NORMAL)
-@allure.label("owner", "Zosimov")
-@allure.epic("Api тесты")
-@allure.feature("Reqres api")
 @allure.story(
     "Проверяем, что падает ошибка при попытке получить информацию о юзерах на несуществующей странице")
 @conftest.api
@@ -105,11 +106,9 @@ def test_get_user_not_found():
     response_utils.check_status_code(404, response.status_code)
 
 
-@allure.tag("api")
+@tm4j("ZM-T5")
+@jira_issues("ZM-1")
 @allure.severity(Severity.NORMAL)
-@allure.label("owner", "Zosimov")
-@allure.epic("Api тесты")
-@allure.feature("Reqres api")
 @allure.story("Проверяем возможность создания нового пользователя")
 @conftest.api
 @pytest.mark.api
@@ -129,11 +128,9 @@ def test_create_user():
     response_utils.validate_response_json(schema, response)
 
 
-@allure.tag("api")
+@tm4j("ZM-T6")
+@jira_issues("ZM-1")
 @allure.severity(Severity.NORMAL)
-@allure.label("owner", "Zosimov")
-@allure.epic("Api тесты")
-@allure.feature("Reqres api")
 @allure.story("Проверяем возможность изменить информацию о юзере №13")
 @conftest.api
 @pytest.mark.api
@@ -155,11 +152,9 @@ def test_put_user():
     response_utils.validate_response_json(schema, response)
 
 
-@allure.tag("api")
+@tm4j("ZM-T7")
+@jira_issues("ZM-1")
 @allure.severity(Severity.NORMAL)
-@allure.label("owner", "Zosimov")
-@allure.epic("Api тесты")
-@allure.feature("Reqres api")
 @allure.story("Проверяем успешность логина")
 @conftest.api
 @pytest.mark.api
@@ -181,11 +176,9 @@ def test_post_successful_login():
     response_utils.validate_response_json(schema, response)
 
 
-@allure.tag("api")
+@tm4j("ZM-T8")
+@jira_issues("ZM-1")
 @allure.severity(Severity.NORMAL)
-@allure.label("owner", "Zosimov")
-@allure.epic("Api тесты")
-@allure.feature("Reqres api")
 @allure.story(
     "Проверяем, что падает ошибка 'Missing password' при попытке логина без пароля")
 @conftest.api
@@ -206,11 +199,9 @@ def test_post_unsuccessful_login():
         assert response.json()['error'] == 'Missing password'
 
 
-@allure.tag("api")
+@tm4j("ZM-T9")
+@jira_issues("ZM-1")
 @allure.severity(Severity.NORMAL)
-@allure.label("owner", "Zosimov")
-@allure.epic("Api тесты")
-@allure.feature("Reqres api")
 @allure.story("Проверяем успешную регистрацию")
 @conftest.api
 @pytest.mark.api
@@ -232,11 +223,9 @@ def test_post_successful_registration():
     response_utils.validate_response_json(schema, response)
 
 
-@allure.tag("api")
+@tm4j("ZM-T10")
+@jira_issues("ZM-1")
 @allure.severity(Severity.NORMAL)
-@allure.label("owner", "Zosimov")
-@allure.epic("Api тесты")
-@allure.feature("Reqres api")
 @allure.story(
     "Проверяем, что падает ошибка 'Missing password' при попытке регистрации без пароля")
 @conftest.api
