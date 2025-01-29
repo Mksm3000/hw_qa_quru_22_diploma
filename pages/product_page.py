@@ -6,6 +6,9 @@ class ProductPage:
 
     def address_input_and_check(self, address):
         with allure.step('Вводим address: ' + address):
+            # принимаем политику куки, нажимаем "accept all"
+            browser.element('#onetrust-accept-btn-handler').click()
+
             browser.element('[data-test-id="address-input-container"]').element(
                 '[data-test-id="address-input-placeholder"]').click()
             browser.element('#base-modal').should(be.visible)
