@@ -1,9 +1,10 @@
 import allure
+import pytest
 
-from pages.product_page import product_page
 from pages.main_page import main_page
+from pages.product_page import product_page
+from tests import conftest
 from tests.marks import microservice, layer, owner, tm4j, jira_issues
-
 
 pytestmark = [
     layer("web"),
@@ -25,7 +26,6 @@ class DATA:
     extra_second = 'Fanta 0.33 l'
 
 
-
 @tm4j("ZM-T14")
 @microservice("Billing")
 @jira_issues("ZM-4")
@@ -34,6 +34,8 @@ class DATA:
 @allure.feature('Products')
 @allure.story('Add, edit and delete products in cart')
 @allure.title('Test adding, editing and deleting products in cart')
+@conftest.web
+@pytest.mark.web
 def test_add_edit_delete_products_in_cart():
     main_page.open()
 

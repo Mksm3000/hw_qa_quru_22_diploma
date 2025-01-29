@@ -5,7 +5,6 @@ from pages.app_page import app_page
 from tests import conftest
 from tests.marks import microservice, layer, owner, tm4j, jira_issues
 
-
 pytestmark = [
     layer("mobile"),
     owner("zosimov"),

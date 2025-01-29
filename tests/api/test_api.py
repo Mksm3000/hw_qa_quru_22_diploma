@@ -7,8 +7,8 @@ from curlify import to_curl
 from requests import sessions
 
 from tests import conftest
+from tests.marks import layer, owner, tm4j, jira_issues
 from utils import schema_utils, response_utils
-from tests.marks import microservice, layer, owner, tm4j, jira_issues
 
 pytestmark = [
     layer("rest"),
@@ -48,6 +48,7 @@ def get_total_users():
     response = reqres_api('get', '/api/users/?page=2')
     total_users = response.json()['total']
     return total_users
+
 
 @tm4j("ZM-T1")
 @jira_issues("ZM-1")

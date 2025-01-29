@@ -3,10 +3,9 @@ import pytest
 
 from pages.main_page import main_page
 from tests import conftest
+from tests.marks import microservice, layer, owner, tm4j, jira_issues
 from user.nonexistent import non_existent_user
 from user.random import random_user
-from tests.marks import microservice, layer, owner, tm4j, jira_issues
-
 
 pytestmark = [
     layer("web"),
