@@ -27,7 +27,6 @@ class DATA:
 
 
 @tm4j("ZM-T14")
-@microservice("Billing")
 @jira_issues("ZM-4")
 @microservice("cart-service")
 @allure.severity('critical')

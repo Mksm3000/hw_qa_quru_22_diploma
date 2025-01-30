@@ -18,7 +18,6 @@ REPO = "allure2"
 
 
 @tm4j("ZM-T12")
-@microservice("Billing")
 @jira_issues("ZM-3")
 @microservice("auth-service")
 @allure.severity('critical')
@@ -39,7 +38,6 @@ def test_registration_by_email_with_successful():
 
 
 @tm4j("ZM-T13")
-@microservice("auth-service")
 @jira_issues("ZM-3")
 @microservice("auth-service")
 @allure.severity('critical')

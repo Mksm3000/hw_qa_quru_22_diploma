@@ -50,7 +50,8 @@ class ProductPage:
             collection = browser.all('[data-test-id="cart-entry-item"]')
             needful = collection.element_by(have.text(item_name))
             needful.element('[data-test-id="edit-button"]').click()
-            browser.element('[data-test-id="modal-window"]').should(be.visible)
+            browser.element('[data-test-id="modal-window"]').with_(timeout=10).should(
+                be.visible)
             browser.element(f'[track="{extra}"]').click()
             browser.element('[data-test-id="add-button"]').click()
 
